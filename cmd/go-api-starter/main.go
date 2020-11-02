@@ -1,7 +1,15 @@
 package main
 
-import "log"
+import (
+	"log"
+
+	"github.com/cameron-wood/go-api-starter/internal/server"
+)
 
 func main() {
-	log.Println("Hello, Gopher!")
+	log.Println("Starting API")
+
+	s := server.New("80")
+	s.SetupRoutes()
+	s.Start()
 }

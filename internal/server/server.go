@@ -16,8 +16,10 @@ type Server struct {
 }
 
 // New returns a new web server
-func New() *Server {
-	return &Server{}
+func New(port string) *Server {
+	return &Server{
+		port: port,
+	}
 }
 
 // Start runs the web server
