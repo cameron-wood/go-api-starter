@@ -11,21 +11,21 @@ import (
 
 // Server holds web server components
 type Server struct {
-	port string
-	r    *chi.Mux
+	c *Config
+	r *chi.Mux
 }
 
 // New returns a new web server
-func New(port string) *Server {
+func New(c *Config) *Server {
 	return &Server{
-		port: port,
+		c: c,
 	}
 }
 
 // Start runs the web server
 func (s *Server) Start() {
-	log.Printf("Starting HTTP server on port %s", s.port)
-	err := http.ListenAndServe(":"+s.port, s.r)
+	log.Printf("Starting HTTP server on port %s", s.c.Port)
+	err := http.ListenAndServe(":"+s.c.Port, s.r)
 	if err != nil {
 		log.Fatal(err)
 	}
